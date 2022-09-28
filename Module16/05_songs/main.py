@@ -18,4 +18,4 @@ for number_song in range(quantity_songs):
         if song == violator_songs[i_song][0]:
             summ_time += violator_songs[i_song][1]
             break
-print('\nОбщее время звучания песен: ', round(summ_time, ' минуты'))
+print('\nОбщее время звучания песен: ', round(summ_time, 2), ' минуты')
