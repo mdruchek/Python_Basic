@@ -27,7 +27,7 @@ def dividing_into_lines(_list):
 
 
 def shift_word(shift, word_str):
-    word_list = [symbol for symbol in word_str]
+    word_list = list(word_str)
     for transfer_symbol in range(shift):
         word_list.insert(0, word_list[len(word_list) - 1])
         word_list.pop()
