@@ -31,9 +31,7 @@ def shift_word(shift, word_str):
     for transfer_symbol in range(shift):
         word_list.insert(0, word_list[len(word_list) - 1])
         word_list.pop()
-    word_str_shift = ''
-    for symbol in word_list:
-        word_str_shift += symbol
+    word_str_shift = ''.join(word_list)
     return word_str_shift
 
 
@@ -46,9 +44,7 @@ def decoded_text(text):
                       else special_symbol(symbol)
                       for symbol in text]
 
-    caesar_decoder_str = ''
-    for symbol in caesar_decoder_symbol_list:
-        caesar_decoder_str += symbol
+    caesar_decoder_str = ''.join(caesar_decoder_symbol_list)
 
     caesar_decoder_word_list = caesar_decoder_str.split(' ')
     text_by_lines_list = dividing_into_lines(caesar_decoder_word_list)
