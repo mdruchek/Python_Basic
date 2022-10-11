@@ -1,9 +1,23 @@
+def student_interests_len_surname(_dict):
+    sum_len_surname = 0
+    interests_students = set()
+
+    for i_data in _dict.values():
+        for j_key, j_value in i_data.items():
+            if j_key == 'surname':
+                sum_len_surname += len(j_value)
+            if j_key == 'interests':
+                interests_students.update(set(j_value))
+
+    return interests_students, sum_len_surname
+
+
 students = {
     1: {
         'name': 'Bob',
         'surname': 'Vazovski',
         'age': 23,
-        'interests': ['biology, swimming']
+        'interests': ['biology', 'swimming']
     },
     2: {
         'name': 'Rob',
@@ -19,26 +33,9 @@ students = {
     }
 }
 
+print('Список пар "ID студента - возраст": {}'.format([(id_student, data_student['age'])
+                                                       for id_student, data_student in students.items()]))
 
-def f(dict):
-    lst = []
-    string = ''
-    for i in dict:
-        lst += (dict[i]['interests'])
-        string += dict[i]['surname']
-    cnt = 0
-    for s in string:
-        cnt += 1
-    return lst, cnt
-
-
-pairs = []
-for i in students:
-    pairs += (i, students[i]['age'])
-
-
-my_lst = f(students)[0]
-l = f(students)[1]
-print(my_lst, l)
-
-# TODO исправить код
+interests_students, sum_len_surname = student_interests_len_surname(students)
+print('Полный список интересов всех студентов: {}'.format(interests_students))
+print('Общая длина всех фамилий студентов: {}'.format(sum_len_surname))
