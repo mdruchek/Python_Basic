@@ -3,13 +3,10 @@ def counting_numerals(file_read, file_write):
     numbers_str = file_numbers.read()
     file_numbers.close()
 
-    summ = 0
-    for symbol in numbers_str:
-        if symbol.isdigit():
-            summ += int(symbol)
+    numbers_list = [int(elem) for elem in numbers_str.split()]
 
     file_answer = open(file_write, 'w', encoding='utf8')
-    file_answer.write(str(summ))
+    file_answer.write(str(sum(numbers_list)))
     file_answer.close()
 
 
