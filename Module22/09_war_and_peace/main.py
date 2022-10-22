@@ -27,6 +27,7 @@ def statistics_letters_in_zip(file_zip, file_txt, file_output):
                     symbol_dict[symbol] += 1
 
     file_txt.close()
+    archive.close()
 
     sorted_list = sorted(symbol_dict.items(), key=sort_by_alphabet)
     sorted_list = sorted(sorted_list, key=sort_by_frequency)
