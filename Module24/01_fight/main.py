@@ -1,7 +1,7 @@
 import random
 
 
-class Units:
+class Unit:
     def __init__(self, name, index, health = 100):
         self.name = name
         self.health = health
@@ -17,10 +17,10 @@ class Units:
         return False
 
 
-class FightUnits:
+class FightUnit:
     def __init__(self, count):
         self.count = count
-        self.units = [Units('воин', index) for index in range(1, count + 1)]
+        self.units = [Unit('воин', index) for index in range(1, count + 1)]
 
     def attack(self):
         who_is_attacking = self.units[random.randint(0, len(self.units) - 1)]
@@ -50,7 +50,7 @@ class FightUnits:
             print('Битва ещё не закончилась.')
 
 
-fight = FightUnits(100)
+fight = FightUnit(2)
 while not fight.is_stopped():
     fight.attack()
 else:
