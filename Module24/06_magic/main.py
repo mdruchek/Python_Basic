@@ -7,7 +7,7 @@ class Water:
             return Storm()
         elif isinstance(other, Fire):
             return Steam()
-        elif isinstance(self, Ground):
+        elif isinstance(other, Ground):
             return Mud()
         else:
             return None
