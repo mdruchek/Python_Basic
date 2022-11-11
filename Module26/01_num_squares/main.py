@@ -15,7 +15,6 @@ class SquaresNumbersIter:
 
     def __iter__(self) -> Iterable:
         self.count = 0
-        self.number = number
         return self
 
     def __next__(self) -> int:
