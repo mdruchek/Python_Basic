@@ -5,10 +5,11 @@ import functools
 def how_are_you(func: Callable) -> Any:
     """Декоратор"""
     @functools.wraps(func)
-    def wrapper_func() -> None:
+    def wrapper_func(*args, **kwargs) -> Any:
         input('Как дела? ')
         print('А у меня не очень! Ладно, держи свою функцию.')
-        func()
+        result = func(*args, **kwargs)
+        return result
     return wrapper_func
 
 

@@ -7,10 +7,11 @@ def counter(func: Callable) -> Any:
     Декоратор для счета количества вызовов функции
     """
     @functools.wraps(func)
-    def wrapper() -> None:
+    def wrapper(*args, **kwargs) -> Any:
         wrapper.count += 1
         print('Счётчик вызова функции: {}'.format(wrapper.count))
-        func()
+        result = func(*args, **kwargs)
+        return result
     wrapper.count = 0
     return wrapper
 

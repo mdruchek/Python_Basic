@@ -1,4 +1,4 @@
-from typing import Callable
+from typing import Callable, Any
 import functools
 
 
@@ -7,7 +7,7 @@ def debug(func: Callable) -> Callable:
     Декоратор для вывода информации о функции
     """
     @functools.wraps(func)
-    def wrapped(*args, **kwargs) -> None:
+    def wrapped(*args, **kwargs) -> Any:
         age_return = None
         if kwargs:
             if kwargs.get('name'):
@@ -31,6 +31,7 @@ def debug(func: Callable) -> Callable:
                                                               meaning=repr(return_func)))
         print(return_func)
         print()
+        return return_func
     return wrapped
 
 

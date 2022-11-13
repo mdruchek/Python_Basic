@@ -1,26 +1,30 @@
 import datetime
-from typing import Callable
+from typing import Callable, Any
+import functools
 
 
 def logging(func: Callable) -> Callable:
     """
     Декоратор логирования
     """
-    print('Имя функции: {}'.format(func.__name__))
-    print(func.__doc__)
+    @functools.wraps(func)
+    def wrapper_func(*args, **kwargs) -> Any:
+        print('Имя функции: {}'.format(func.__name__))
+        print(func.__doc__)
 
-    try:
-        func()
-    except Exception as exc:
-        log_error = 'Имя функции: {name_func}\n' \
-                    'Ошибка: {error}\n' \
-                    '{date_time}\n\n'.format(name_func=func.__name__,
-                                             error=exc,
-                                             date_time=datetime.datetime.now())
+        try:
+            result = func(*args, **kwargs)
+            return result
+        except Exception as exc:
+            log_error = 'Имя функции: {name_func}\n' \
+                        'Ошибка: {error}\n' \
+                        '{date_time}\n\n'.format(name_func=func.__name__,
+                                                 error=exc,
+                                                 date_time=datetime.datetime.now())
 
-        with open('function_errors.log', 'a', encoding='utf8') as log_file:
-            log_file.write(log_error)
-    return func
+            with open('function_errors.log', 'a', encoding='utf8') as log_file:
+                log_file.write(log_error)
+    return wrapper_func
 
 
 @logging
@@ -41,3 +45,5 @@ def type_error() -> None:
 
 divide_by_zero()
 type_error()
+
+
